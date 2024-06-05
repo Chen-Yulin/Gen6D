@@ -51,7 +51,7 @@ class BaseDatabase(abc.ABC):
         # dummy mask
         img = self.get_image(img_id)
         h, w = img.shape[:2]
-        return np.ones([h,w],np.bool)
+        return np.ones([h,w],np.bool_)
 
 LINEMOD_ROOT='data/LINEMOD'
 class LINEMODDatabase(BaseDatabase):

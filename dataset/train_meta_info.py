@@ -13,7 +13,7 @@ def get_gso_split(resolution=128):
         train_fns, val_fns, test_fns = read_pickle(gso_split_pkl)
     else:
         if os.path.exists('data/google_scanned_objects'):
-            sym_fns = np.loadtxt('assets/gso_sym.txt',dtype=np.str).tolist()
+            sym_fns = np.loadtxt('assets/gso_sym.txt',dtype=str).tolist()
             gso_fns = []
             for fn in os.listdir('data/google_scanned_objects'):
                 if os.path.isdir(os.path.join('data/google_scanned_objects',fn)) and fn not in sym_fns:
@@ -46,7 +46,7 @@ def get_co3d_category_split(category):
     train_names, val_names = seq_names[2:], seq_names[:2]
     return train_names, val_names
 
-co3d_categories = np.loadtxt('assets/co3d_names.txt',dtype=np.str).tolist()
+co3d_categories = np.loadtxt('assets/co3d_names.txt',dtype=str).tolist()
 
 def get_co3d_split(category_num=None):
     if not os.path.exists(Co3D_ROOT) and not os.path.exists(f'{Co3D_ROOT}_256_512'): return [], []
@@ -74,7 +74,7 @@ shapenet_excluded_clasees=[
     '02808440',
     '04225987',
 ]
-shapenet_excluded_instance=np.loadtxt('assets/shapenet_sym_objects.txt', dtype=np.str).tolist()
+shapenet_excluded_instance=np.loadtxt('assets/shapenet_sym_objects.txt', dtype=str).tolist()
 shapenet_train_names = read_pickle(f'data/shapenet/shapenet_render_v1.pkl')
 
 # 'co3d_train', 'gso_train_128', 'shapenet_train_v1', 'linemod_train', 'gen6d_train'
