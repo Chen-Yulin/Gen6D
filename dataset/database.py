@@ -312,11 +312,11 @@ def get_database_split(database, split_name):
     if split_name.startswith('linemod'): # linemod_test or linemod_val
         assert(database.database_name.startswith('linemod'))
         model_name = database.database_name.split('/')[1]
-        lines = np.loadtxt(f"{LINEMOD_ROOT}/{model_name}/test.txt",dtype=np.str).tolist()
+        lines = np.loadtxt(f"{LINEMOD_ROOT}/{model_name}/test.txt",dtype=str).tolist()
         que_ids, ref_ids = [], []
         for line in lines: que_ids.append(str(int(line.split('/')[-1].split('.')[0])))
         if split_name=='linemod_val': que_ids = que_ids[::10]
-        lines = np.loadtxt(f"{LINEMOD_ROOT}/{model_name}/train.txt", dtype=np.str).tolist()
+        lines = np.loadtxt(f"{LINEMOD_ROOT}/{model_name}/train.txt", dtype=str).tolist()
         for line in lines: ref_ids.append(str(int(line.split('/')[-1].split('.')[0])))
     elif split_name=='all':
         ref_ids = que_ids = database.get_img_ids()
